@@ -1,0 +1,62 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "infra": "https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/json-ld/scalable-infrastructure-context.jsonld#",
+    "aws": "https://docs.aws.amazon.com/ns/",
+    "k8s": "https://kubernetes.io/ns/",
+
+    "ComputeInstance": {
+      "@id": "infra:ComputeInstance",
+      "@type": "@id",
+      "comment": "A cloud virtual machine instance (EC2, GCE, Azure VM, Droplet)."
+    },
+    "VirtualPrivateCloud": {
+      "@id": "infra:VirtualPrivateCloud",
+      "@type": "@id",
+      "comment": "An isolated virtual network within a cloud provider."
+    },
+    "ManagedKubernetesCluster": {
+      "@id": "infra:ManagedKubernetesCluster",
+      "@type": "@id",
+      "comment": "A provider-managed Kubernetes control plane and worker node pool."
+    },
+    "StorageVolume": {
+      "@id": "infra:StorageVolume",
+      "@type": "@id",
+      "comment": "A block storage volume attachable to compute instances."
+    },
+    "InfrastructureStack": {
+      "@id": "infra:InfrastructureStack",
+      "@type": "@id",
+      "comment": "A named collection of infrastructure resources managed as a unit via IaC."
+    },
+    "LoadBalancer": {
+      "@id": "infra:LoadBalancer",
+      "@type": "@id",
+      "comment": "A cloud load balancer distributing traffic across compute instances."
+    },
+
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "provider": "infra:provider",
+    "region": "infra:region",
+    "availabilityZone": "infra:availabilityZone",
+    "status": "schema:status",
+    "type": "schema:additionalType",
+    "cpu": "infra:cpu",
+    "memory": "infra:memory",
+    "storage": "infra:storage",
+    "networking": "infra:networking",
+    "gpu": "infra:gpu",
+    "tags": "schema:keywords",
+    "vpcId": "infra:vpcId",
+    "subnetId": "infra:subnetId",
+    "privateIp": "infra:privateIp",
+    "publicIp": "schema:ipAddress",
+    "securityGroups": "infra:securityGroups",
+    "createdAt": "schema:dateCreated",
+    "terminatedAt": "schema:endDate"
+  }
+}

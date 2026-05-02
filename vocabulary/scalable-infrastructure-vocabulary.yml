@@ -1,0 +1,283 @@
+name: Scalable Infrastructure Vocabulary
+description: >-
+  Normative vocabulary for the scalable infrastructure topic domain, covering
+  cloud providers, compute primitives, networking, storage, container orchestration,
+  infrastructure as code, and operational management concepts.
+created: '2026-05-02'
+modified: '2026-05-02'
+tags:
+  - Cloud
+  - Compute
+  - Infrastructure
+  - Networking
+  - Scalability
+  - Storage
+
+terms:
+
+  - term: Cloud Provider
+    definition: >-
+      A company that delivers computing infrastructure, platforms, and services
+      over the internet on a pay-as-you-go model. Major providers include AWS
+      (~31% market share), Microsoft Azure (~28%), and Google Cloud (~12%).
+    related:
+      - AWS
+      - Azure
+      - Google Cloud
+      - DigitalOcean
+
+  - term: Virtual Machine
+    definition: >-
+      An emulation of a computer system that runs on physical hardware. Cloud VMs
+      (EC2 instances, GCE instances, Azure VMs, DigitalOcean Droplets) provide
+      isolated compute environments with configurable CPU, memory, and storage.
+    synonyms:
+      - VM
+      - Instance
+      - Droplet
+    related:
+      - Instance Type
+      - AMI
+      - Bare Metal
+
+  - term: Instance Type
+    definition: >-
+      A predefined combination of virtual CPU count, memory size, storage type,
+      and network bandwidth capacity available on a cloud provider. Examples:
+      AWS t3.medium (2 vCPU/4GB), GCE n2-standard-4 (4 vCPU/16GB),
+      Azure Standard_D2s_v3 (2 vCPU/8GB).
+    synonyms:
+      - Machine Type
+      - VM Size
+      - Droplet Size
+    related:
+      - Virtual Machine
+      - Spot Instance
+
+  - term: Spot Instance
+    definition: >-
+      A discounted VM using spare cloud provider capacity. AWS Spot, GCE Preemptible,
+      and Azure Spot VMs can be 60-90% cheaper than on-demand pricing but can be
+      reclaimed by the provider with short notice. Suitable for fault-tolerant
+      batch workloads.
+    synonyms:
+      - Preemptible Instance
+      - Spot VM
+    related:
+      - Instance Type
+      - Reserved Instance
+
+  - term: AMI
+    definition: >-
+      Amazon Machine Image. A template containing the OS, application server,
+      and application configuration used to launch EC2 instances. Equivalent to
+      GCE Machine Image, Azure Managed Image, or DigitalOcean Snapshot.
+    acronym: AMI
+    fullName: Amazon Machine Image
+    related:
+      - Virtual Machine
+      - Container Image
+
+  - term: Virtual Private Cloud
+    definition: >-
+      An isolated virtual network within a cloud provider that logically segments
+      resources. Each VPC has its own IP address range, subnets, route tables, and
+      internet/NAT gateways. Foundation of cloud network security.
+    synonyms:
+      - VPC
+      - Virtual Network
+      - VNet
+    related:
+      - Subnet
+      - Security Group
+      - NAT Gateway
+
+  - term: Subnet
+    definition: >-
+      A range of IP addresses within a VPC. Public subnets route traffic to an
+      internet gateway; private subnets route outbound traffic through a NAT gateway.
+    related:
+      - VPC
+      - Availability Zone
+
+  - term: Security Group
+    definition: >-
+      A stateful virtual firewall controlling inbound and outbound traffic at the
+      instance level in a VPC. Rules define allowed protocols, ports, and source/
+      destination CIDR blocks or other security groups.
+    related:
+      - VPC
+      - Network ACL
+      - Firewall
+
+  - term: Availability Zone
+    definition: >-
+      An isolated physical data center within a cloud region. Each region has
+      2-6+ AZs. Distributing resources across AZs provides fault isolation and
+      high availability.
+    acronym: AZ
+    related:
+      - Region
+      - Virtual Machine
+
+  - term: Region
+    definition: >-
+      A geographic area containing multiple availability zones. Cloud providers
+      have 20-40+ regions globally. Resources in different regions are isolated
+      from each other.
+    related:
+      - Availability Zone
+      - Multi-Region
+
+  - term: Managed Kubernetes Service
+    definition: >-
+      A cloud provider service that manages the Kubernetes control plane (API server,
+      etcd, scheduler, controller manager), allowing users to focus on deploying
+      workloads rather than operating Kubernetes infrastructure. Examples: EKS, GKE, AKS.
+    synonyms:
+      - EKS
+      - GKE
+      - AKS
+    related:
+      - Kubernetes
+      - Node Pool
+
+  - term: Node Pool
+    definition: >-
+      A group of worker nodes in a Kubernetes cluster sharing the same configuration
+      (instance type, OS, labels, taints). Multiple node pools allow different
+      workload types (GPU, high-memory, spot) within the same cluster.
+    synonyms:
+      - Node Group
+      - Agent Pool
+    related:
+      - Managed Kubernetes Service
+      - Cluster Autoscaler
+
+  - term: Cluster Autoscaler
+    definition: >-
+      A Kubernetes component that automatically adjusts the size of node pools
+      based on pending pod scheduling failures (scale-up) or underutilized nodes
+      (scale-down). Ensures sufficient cluster capacity at minimal cost.
+    related:
+      - Node Pool
+      - Managed Kubernetes Service
+
+  - term: Infrastructure as Code
+    definition: >-
+      The practice of managing and provisioning infrastructure through
+      machine-readable configuration files rather than manual processes or
+      interactive configuration tools. Terraform, Pulumi, AWS CDK, and Crossplane
+      are leading IaC tools.
+    acronym: IaC
+    fullName: Infrastructure as Code
+    related:
+      - Terraform
+      - Pulumi
+      - GitOps
+
+  - term: Terraform
+    definition: >-
+      HashiCorp's open-source IaC tool that uses HCL (HashiCorp Configuration
+      Language) to declaratively provision and manage cloud infrastructure across
+      100+ providers. The most widely adopted IaC tool.
+    related:
+      - Infrastructure as Code
+      - Pulumi
+      - State File
+
+  - term: State File
+    definition: >-
+      A file (terraform.tfstate) maintained by Terraform that records the current
+      state of managed infrastructure. Used to detect drift between desired and
+      actual configuration. Often stored remotely in S3, GCS, or Terraform Cloud.
+    related:
+      - Terraform
+      - Infrastructure as Code
+
+  - term: Block Storage
+    definition: >-
+      Persistent, attachable storage volumes presented as block devices to compute
+      instances. Examples: AWS EBS, GCE Persistent Disk, Azure Managed Disk.
+      Supports different performance tiers (HDD, SSD, NVMe).
+    synonyms:
+      - EBS
+      - Persistent Disk
+      - Managed Disk
+    related:
+      - Object Storage
+      - File Storage
+
+  - term: Object Storage
+    definition: >-
+      Highly scalable, durable cloud storage for unstructured data accessed via
+      HTTP API. Examples: AWS S3, GCS, Azure Blob Storage, DigitalOcean Spaces.
+      The foundation for data lakes, static website hosting, and backups.
+    synonyms:
+      - S3
+      - Blob Storage
+      - GCS
+    related:
+      - Block Storage
+      - CDN
+
+  - term: NAT Gateway
+    definition: >-
+      A managed network address translation service that allows resources in private
+      subnets to initiate outbound internet connections without exposing them to
+      inbound internet traffic.
+    related:
+      - VPC
+      - Subnet
+
+  - term: Internet Gateway
+    definition: >-
+      A VPC component that allows communication between resources in the VPC and
+      the internet. Required for public subnets to have inbound and outbound
+      internet connectivity.
+    related:
+      - VPC
+      - NAT Gateway
+
+categories:
+  - name: Cloud Providers
+    terms:
+      - Cloud Provider
+      - AWS
+      - Azure
+      - Google Cloud
+      - DigitalOcean
+
+  - name: Compute
+    terms:
+      - Virtual Machine
+      - Instance Type
+      - Spot Instance
+      - AMI
+
+  - name: Networking
+    terms:
+      - Virtual Private Cloud
+      - Subnet
+      - Security Group
+      - NAT Gateway
+      - Internet Gateway
+      - Availability Zone
+      - Region
+
+  - name: Kubernetes Infrastructure
+    terms:
+      - Managed Kubernetes Service
+      - Node Pool
+      - Cluster Autoscaler
+
+  - name: Infrastructure as Code
+    terms:
+      - Infrastructure as Code
+      - Terraform
+      - State File
+
+  - name: Storage
+    terms:
+      - Block Storage
+      - Object Storage

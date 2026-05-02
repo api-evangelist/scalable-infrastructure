@@ -1,0 +1,88 @@
+{
+  "name": "Compute Instance",
+  "description": "Hierarchical structure for a normalized cloud compute instance across AWS EC2, Google Compute Engine, Azure VMs, and DigitalOcean Droplets.",
+  "fields": [
+    {"name": "id", "type": "string", "description": "Provider-assigned instance ID.", "required": true},
+    {"name": "name", "type": "string", "description": "Human-readable instance name.", "required": false},
+    {"name": "provider", "type": "string", "description": "Cloud provider: aws, gcp, azure, digitalocean, etc.", "required": true},
+    {"name": "type", "type": "string", "description": "Instance type/size (e.g., t3.medium, n2-standard-4).", "required": true},
+    {"name": "status", "type": "string", "description": "Lifecycle state: pending, running, stopping, stopped, terminated.", "required": true},
+    {"name": "region", "type": "string", "description": "Cloud region (e.g., us-east-1, us-central1).", "required": true},
+    {"name": "availabilityZone", "type": "string", "description": "AZ within the region.", "required": false},
+    {"name": "imageId", "type": "string", "description": "OS image identifier (AMI ID, etc.).", "required": false},
+    {
+      "name": "os",
+      "type": "object",
+      "description": "Operating system details.",
+      "required": false,
+      "fields": [
+        {"name": "family", "type": "string", "description": "Linux, Windows, or BSD."},
+        {"name": "distribution", "type": "string", "description": "e.g., Ubuntu 24.04 LTS, Amazon Linux 2023."}
+      ]
+    },
+    {
+      "name": "cpu",
+      "type": "object",
+      "description": "CPU specifications.",
+      "required": false,
+      "fields": [
+        {"name": "vCPUs", "type": "integer", "description": "Number of virtual CPUs."},
+        {"name": "architecture", "type": "string", "description": "x86_64 or arm64."}
+      ]
+    },
+    {
+      "name": "memory",
+      "type": "object",
+      "description": "RAM specifications.",
+      "required": false,
+      "fields": [
+        {"name": "sizeGiB", "type": "number", "description": "Total RAM in gibibytes."},
+        {"name": "type", "type": "string", "description": "Memory type (DDR4, DDR5, HBM2)."}
+      ]
+    },
+    {
+      "name": "storage",
+      "type": "array",
+      "description": "Attached block storage volumes.",
+      "required": false,
+      "items": {
+        "fields": [
+          {"name": "volumeId", "type": "string"},
+          {"name": "type", "type": "string", "description": "ssd, hdd, nvme, network-ssd."},
+          {"name": "sizeGiB", "type": "integer"},
+          {"name": "iops", "type": "integer"},
+          {"name": "isRoot", "type": "boolean"}
+        ]
+      }
+    },
+    {
+      "name": "networking",
+      "type": "object",
+      "description": "Network configuration.",
+      "required": false,
+      "fields": [
+        {"name": "vpcId", "type": "string"},
+        {"name": "subnetId", "type": "string"},
+        {"name": "privateIp", "type": "string", "description": "IPv4 private address."},
+        {"name": "publicIp", "type": "string", "description": "IPv4 public address."},
+        {"name": "ipv6", "type": "string"},
+        {"name": "securityGroups", "type": "array"},
+        {"name": "bandwidthGbps", "type": "number"}
+      ]
+    },
+    {
+      "name": "gpu",
+      "type": "object",
+      "description": "GPU specifications (GPU instances only).",
+      "required": false,
+      "fields": [
+        {"name": "count", "type": "integer"},
+        {"name": "model", "type": "string", "description": "e.g., NVIDIA A100, H100."},
+        {"name": "memoryGiB", "type": "number"}
+      ]
+    },
+    {"name": "tags", "type": "object", "description": "Provider tags/labels as key-value pairs.", "required": false},
+    {"name": "createdAt", "type": "string", "description": "ISO 8601 creation timestamp.", "required": false},
+    {"name": "terminatedAt", "type": "string", "description": "ISO 8601 termination timestamp.", "required": false}
+  ]
+}

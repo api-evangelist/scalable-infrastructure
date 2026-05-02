@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/json-schema/scalable-infrastructure-compute-instance-schema.json",
+  "title": "Compute Instance",
+  "description": "A normalized schema describing a cloud compute instance (VM/Droplet/Node) across providers such as AWS EC2, Google Compute Engine, Azure VMs, and DigitalOcean Droplets.",
+  "type": "object",
+  "required": ["id", "provider", "type", "status", "region"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Provider-assigned unique instance identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name for the instance."
+    },
+    "provider": {
+      "type": "string",
+      "description": "Cloud provider hosting this instance.",
+      "enum": ["aws", "gcp", "azure", "digitalocean", "linode", "hetzner", "vultr"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Instance type/size (e.g., t3.medium, n2-standard-4, Standard_D2s_v3, s-2vcpu-4gb)."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current lifecycle state of the instance.",
+      "enum": ["pending", "running", "stopping", "stopped", "terminated", "rebooting", "error"]
+    },
+    "region": {
+      "type": "string",
+      "description": "Cloud region where the instance is deployed (e.g., us-east-1, us-central1, eastus, nyc3)."
+    },
+    "availabilityZone": {
+      "type": "string",
+      "description": "Specific availability zone within the region."
+    },
+    "imageId": {
+      "type": "string",
+      "description": "ID of the OS image (AMI, Compute Image, Marketplace Image)."
+    },
+    "os": {
+      "type": "object",
+      "description": "Operating system details.",
+      "properties": {
+        "family": {
+          "type": "string",
+          "enum": ["Linux", "Windows", "BSD"],
+          "default": "Linux"
+        },
+        "distribution": {
+          "type": "string",
+          "examples": ["Ubuntu 24.04 LTS", "Amazon Linux 2023", "Debian 12", "RHEL 9", "Windows Server 2022"]
+        }
+      }
+    },
+    "cpu": {
+      "type": "object",
+      "properties": {
+        "vCPUs": {"type": "integer", "minimum": 1},
+        "architecture": {"type": "string", "enum": ["x86_64", "arm64", "x86_32"]}
+      }
+    },
+    "memory": {
+      "type": "object",
+      "properties": {
+        "sizeGiB": {"type": "number", "minimum": 0},
+        "type": {"type": "string", "enum": ["DDR4", "DDR5", "HBM2", "standard"]}
+      }
+    },
+    "storage": {
+      "type": "array",
+      "description": "Attached block storage volumes.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "volumeId": {"type": "string"},
+          "type": {"type": "string", "enum": ["ssd", "hdd", "nvme", "network-ssd", "network-hdd"]},
+          "sizeGiB": {"type": "integer", "minimum": 1},
+          "iops": {"type": "integer"},
+          "isRoot": {"type": "boolean"}
+        }
+      }
+    },
+    "networking": {
+      "type": "object",
+      "properties": {
+        "vpcId": {"type": "string"},
+        "subnetId": {"type": "string"},
+        "privateIp": {"type": "string", "format": "ipv4"},
+        "publicIp": {"type": "string", "format": "ipv4"},
+        "ipv6": {"type": "string", "format": "ipv6"},
+        "securityGroups": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "bandwidthGbps": {"type": "number"}
+      }
+    },
+    "gpu": {
+      "type": "object",
+      "description": "GPU details for GPU-enabled instances.",
+      "properties": {
+        "count": {"type": "integer", "minimum": 1},
+        "model": {"type": "string", "examples": ["NVIDIA A100", "NVIDIA H100", "NVIDIA T4", "AMD MI300X"]},
+        "memoryGiB": {"type": "number"}
+      }
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "terminatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
