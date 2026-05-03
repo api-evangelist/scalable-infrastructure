@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/json-schema/scalable-infrastructure-kubernetes-cluster-schema.json",
+  "title": "Kubernetes Cluster",
+  "description": "Describes a managed Kubernetes cluster configuration across AWS EKS, Google GKE, Azure AKS, and DigitalOcean DOKS. Covers node pools, networking, autoscaling, and access control.",
+  "type": "object",
+  "required": ["name", "provider", "region", "version"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Provider-assigned unique cluster identifier.",
+      "example": "cluster-abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable cluster name.",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "minLength": 1,
+      "maxLength": 63
+    },
+    "provider": {
+      "type": "string",
+      "description": "Cloud provider hosting the managed Kubernetes cluster.",
+      "enum": ["aws-eks", "google-gke", "azure-aks", "digitalocean-doks", "self-managed"]
+    },
+    "region": {
+      "type": "string",
+      "description": "Cloud region where the cluster control plane resides.",
+      "examples": ["us-east-1", "us-central1", "eastus", "nyc3"]
+    },
+    "version": {
+      "type": "string",
+      "description": "Kubernetes version (e.g., 1.29, 1.30).",
+      "pattern": "^\\d+\\.\\d+(\\.\\d+)?$",
+      "example": "1.30"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current operational status of the cluster.",
+      "enum": ["provisioning", "running", "upgrading", "degraded", "deleting", "deleted"],
+      "default": "provisioning"
+    },
+    "endpoint": {
+      "type": "string",
+      "description": "API server endpoint URL for kubectl and client access.",
+      "format": "uri"
+    },
+    "nodePools": {
+      "type": "array",
+      "description": "Node pools (worker node groups) in the cluster.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/NodePool"
+      }
+    },
+    "networking": {
+      "$ref": "#/$defs/ClusterNetworking"
+    },
+    "autoscaling": {
+      "$ref": "#/$defs/ClusterAutoscaling"
+    },
+    "addons": {
+      "type": "array",
+      "description": "Managed cluster add-ons or extensions enabled.",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "examples": ["coredns", "kube-proxy", "vpc-cni", "metrics-server", "cluster-autoscaler"]
+          },
+          "version": {"type": "string"},
+          "enabled": {"type": "boolean", "default": true}
+        }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "description": "Key-value metadata labels.",
+      "additionalProperties": {"type": "string"}
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Cluster creation timestamp."
+    }
+  },
+  "$defs": {
+    "NodePool": {
+      "type": "object",
+      "description": "A pool of homogeneous worker nodes with shared configuration.",
+      "required": ["name", "instanceType", "minCount", "maxCount"],
+      "properties": {
+        "name": {"type": "string", "description": "Node pool name."},
+        "instanceType": {
+          "type": "string",
+          "description": "VM instance type/machine type.",
+          "examples": ["t3.xlarge", "n2-standard-4", "Standard_D4s_v3", "s-4vcpu-8gb"]
+        },
+        "minCount": {"type": "integer", "minimum": 0, "description": "Minimum node count."},
+        "maxCount": {"type": "integer", "minimum": 1, "description": "Maximum node count."},
+        "desiredCount": {"type": "integer", "minimum": 0, "description": "Desired node count."},
+        "diskSizeGB": {"type": "integer", "minimum": 20, "default": 100},
+        "labels": {
+          "type": "object",
+          "additionalProperties": {"type": "string"},
+          "description": "Kubernetes node labels."
+        },
+        "taints": {
+          "type": "array",
+          "description": "Kubernetes node taints for workload scheduling.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {"type": "string"},
+              "value": {"type": "string"},
+              "effect": {"type": "string", "enum": ["NoSchedule", "PreferNoSchedule", "NoExecute"]}
+            }
+          }
+        },
+        "spotEnabled": {
+          "type": "boolean",
+          "description": "Whether to use spot/preemptible instances for cost savings.",
+          "default": false
+        }
+      }
+    },
+    "ClusterNetworking": {
+      "type": "object",
+      "description": "Cluster networking configuration.",
+      "properties": {
+        "vpcId": {"type": "string", "description": "VPC or network ID."},
+        "podCidr": {"type": "string", "description": "CIDR block for pod IP addresses.", "example": "10.244.0.0/16"},
+        "serviceCidr": {"type": "string", "description": "CIDR block for service cluster IPs.", "example": "10.96.0.0/12"},
+        "cni": {
+          "type": "string",
+          "description": "Container Network Interface plugin.",
+          "enum": ["vpc-cni", "calico", "cilium", "flannel", "weave"],
+          "default": "vpc-cni"
+        },
+        "privateCluster": {
+          "type": "boolean",
+          "description": "Whether the API server is accessible only from within the VPC.",
+          "default": false
+        }
+      }
+    },
+    "ClusterAutoscaling": {
+      "type": "object",
+      "description": "Cluster-level autoscaling settings.",
+      "properties": {
+        "enabled": {"type": "boolean", "default": true},
+        "minNodes": {"type": "integer", "minimum": 1},
+        "maxNodes": {"type": "integer", "minimum": 1},
+        "scaleDownEnabled": {"type": "boolean", "default": true},
+        "scaleDownDelayAfterAdd": {"type": "string", "description": "Delay after node addition before scale-down.", "example": "10m"},
+        "scaleDownUnneededTime": {"type": "string", "description": "Time a node must be unneeded before removal.", "example": "10m"}
+      }
+    }
+  }
+}

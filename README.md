@@ -169,12 +169,14 @@ Cloud, Infrastructure as Code, IaC, Open Source, Provisioning, Pulumi
 | Artifact | Description |
 |---|---|
 | [Compute Instance Schema](json-schema/scalable-infrastructure-compute-instance-schema.json) | Normalized JSON Schema for cloud compute instances across AWS, GCP, Azure, and DigitalOcean. |
+| [Kubernetes Cluster Schema](json-schema/scalable-infrastructure-kubernetes-cluster-schema.json) | JSON Schema for managed Kubernetes clusters across AWS EKS, GKE, AKS, and DigitalOcean DOKS, covering node pools, networking, and autoscaling. |
 
 ## Structures
 
 | Artifact | Description |
 |---|---|
 | [Compute Instance Structure](json-structure/scalable-infrastructure-compute-instance-structure.json) | Hierarchical field documentation for cross-provider compute instance objects. |
+| [Kubernetes Cluster Structure](json-structure/scalable-infrastructure-kubernetes-cluster-structure.json) | Hierarchical field documentation for managed Kubernetes cluster configurations including node pools, CNI networking, and cluster autoscaler settings. |
 
 ## Linked Data
 
@@ -187,12 +189,19 @@ Cloud, Infrastructure as Code, IaC, Open Source, Provisioning, Pulumi
 | Artifact | Description |
 |---|---|
 | [Compute Instance Example](examples/scalable-infrastructure-compute-instance-example.json) | Example AWS EC2 t3.xlarge instance with networking, storage, GPU, and tag configuration. |
+| [Kubernetes Cluster Example](examples/scalable-infrastructure-kubernetes-cluster-example.json) | Example AWS EKS production cluster with general-purpose and GPU node pools, VPC CNI networking, and Cluster Autoscaler configuration. |
 
 ## Vocabulary
 
 | Artifact | Description |
 |---|---|
 | [Scalable Infrastructure Vocabulary](vocabulary/scalable-infrastructure-vocabulary.yml) | Normative vocabulary for cloud providers, compute primitives, networking, storage, Kubernetes infrastructure, and IaC. |
+
+## Common Properties
+
+- [GitHub Organization](https://github.com/hashicorp)
+- [CNCF Landscape](https://landscape.cncf.io/card-mode?category=provisioning)
+- [Blog](https://www.cncf.io/blog/)
 
 ## Maintainers
 

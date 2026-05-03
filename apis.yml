@@ -315,6 +315,14 @@ common:
     url: https://landscape.cncf.io/card-mode?category=provisioning
   - type: Blog
     url: https://www.cncf.io/blog/
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/json-schema/scalable-infrastructure-compute-instance-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/json-schema/scalable-infrastructure-kubernetes-cluster-schema.json
+  - type: JSONLd
+    url: https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/json-ld/scalable-infrastructure-context.jsonld
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/vocabulary/scalable-infrastructure-vocabulary.yml
 
 maintainers:
   - FN: API Evangelist

@@ -1,0 +1,116 @@
+{
+  "name": "Kubernetes Cluster",
+  "description": "Hierarchical structure of a managed Kubernetes cluster across AWS EKS, GKE, AKS, and DigitalOcean DOKS.",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Provider-assigned cluster identifier.",
+      "required": false
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Human-readable cluster name in kebab-case.",
+      "required": true
+    },
+    {
+      "name": "provider",
+      "type": "string",
+      "description": "Cloud provider (aws-eks, google-gke, azure-aks, digitalocean-doks, self-managed).",
+      "required": true
+    },
+    {
+      "name": "region",
+      "type": "string",
+      "description": "Cloud region where the control plane runs.",
+      "required": true
+    },
+    {
+      "name": "version",
+      "type": "string",
+      "description": "Kubernetes version (e.g., 1.30).",
+      "required": true
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Cluster operational status (provisioning, running, upgrading, degraded, deleting, deleted).",
+      "required": false,
+      "default": "provisioning"
+    },
+    {
+      "name": "endpoint",
+      "type": "string",
+      "description": "Kubernetes API server URL.",
+      "required": false,
+      "format": "uri"
+    },
+    {
+      "name": "nodePools",
+      "type": "array",
+      "description": "Worker node pools with instance type and autoscaling config.",
+      "required": true,
+      "items": {
+        "type": "object",
+        "fields": [
+          {"name": "name", "type": "string", "description": "Node pool name.", "required": true},
+          {"name": "instanceType", "type": "string", "description": "VM instance type (e.g., t3.xlarge, n2-standard-4).", "required": true},
+          {"name": "minCount", "type": "integer", "description": "Minimum node count.", "required": true},
+          {"name": "maxCount", "type": "integer", "description": "Maximum node count.", "required": true},
+          {"name": "desiredCount", "type": "integer", "description": "Current desired node count."},
+          {"name": "diskSizeGB", "type": "integer", "description": "Node root disk size in GB.", "default": 100},
+          {"name": "labels", "type": "object", "description": "Kubernetes node labels."},
+          {"name": "taints", "type": "array", "description": "Kubernetes node taints."},
+          {"name": "spotEnabled", "type": "boolean", "description": "Use spot/preemptible instances.", "default": false}
+        ]
+      }
+    },
+    {
+      "name": "networking",
+      "type": "object",
+      "description": "Network configuration for pod and service CIDRs and CNI plugin.",
+      "required": false,
+      "fields": [
+        {"name": "vpcId", "type": "string", "description": "VPC or virtual network ID."},
+        {"name": "podCidr", "type": "string", "description": "CIDR block for pod addresses."},
+        {"name": "serviceCidr", "type": "string", "description": "CIDR block for service cluster IPs."},
+        {"name": "cni", "type": "string", "description": "CNI plugin (vpc-cni, calico, cilium, flannel, weave)."},
+        {"name": "privateCluster", "type": "boolean", "description": "Whether API server is private.", "default": false}
+      ]
+    },
+    {
+      "name": "autoscaling",
+      "type": "object",
+      "description": "Cluster Autoscaler settings.",
+      "required": false,
+      "fields": [
+        {"name": "enabled", "type": "boolean", "description": "Whether cluster autoscaling is enabled.", "default": true},
+        {"name": "minNodes", "type": "integer", "description": "Minimum total cluster node count."},
+        {"name": "maxNodes", "type": "integer", "description": "Maximum total cluster node count."},
+        {"name": "scaleDownEnabled", "type": "boolean", "description": "Whether scale-down is permitted.", "default": true},
+        {"name": "scaleDownDelayAfterAdd", "type": "string", "description": "Delay after adding nodes before scale-down evaluation."},
+        {"name": "scaleDownUnneededTime", "type": "string", "description": "Time a node must be idle before removal."}
+      ]
+    },
+    {
+      "name": "addons",
+      "type": "array",
+      "description": "Managed cluster add-ons (coredns, metrics-server, vpc-cni, etc.).",
+      "required": false
+    },
+    {
+      "name": "tags",
+      "type": "object",
+      "description": "Key-value metadata labels.",
+      "required": false
+    },
+    {
+      "name": "createdAt",
+      "type": "string",
+      "description": "Cluster creation timestamp.",
+      "required": false,
+      "format": "date-time"
+    }
+  ]
+}
