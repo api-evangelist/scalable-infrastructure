@@ -44,7 +44,7 @@ apis:
         url: https://raw.githubusercontent.com/APIs-guru/openapi-directory/main/APIs/amazonaws.com/ec2/2016-11-15/openapi.yaml
       - type: Pricing
         url: https://aws.amazon.com/ec2/pricing/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html
       - type: SDK
         url: https://aws.amazon.com/developer/tools/
@@ -102,7 +102,7 @@ apis:
         url: https://raw.githubusercontent.com/APIs-guru/openapi-directory/main/APIs/amazonaws.com/eks/2018-08-23/openapi.yaml
       - type: Pricing
         url: https://aws.amazon.com/eks/pricing/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
     contact:
       - type: Support
@@ -239,7 +239,7 @@ apis:
         url: https://raw.githubusercontent.com/digitalocean/openapi/main/specification/DigitalOcean-public.v2.yaml
       - type: Pricing
         url: https://www.digitalocean.com/pricing
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.digitalocean.com/products/getting-started/
       - type: SDK
         url: https://github.com/digitalocean/doctl
@@ -269,7 +269,7 @@ apis:
         url: https://developer.hashicorp.com/terraform/docs
       - type: GitHub
         url: https://github.com/hashicorp/terraform
-      - type: API Reference
+      - type: APIReference
         url: https://developer.hashicorp.com/terraform/cloud-docs/api-docs
       - type: Registry
         url: https://registry.terraform.io/
@@ -298,7 +298,7 @@ apis:
         url: https://www.pulumi.com/docs/
       - type: GitHub
         url: https://github.com/pulumi/pulumi
-      - type: API Reference
+      - type: APIReference
         url: https://www.pulumi.com/docs/pulumi-cloud/cloud-rest-api/
       - type: Pricing
         url: https://www.pulumi.com/pricing/
@@ -309,7 +309,7 @@ apis:
         url: https://github.com/pulumi/pulumi/issues
 
 common:
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/hashicorp
   - type: CNCF Landscape
     url: https://landscape.cncf.io/card-mode?category=provisioning
@@ -319,7 +319,7 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/json-schema/scalable-infrastructure-compute-instance-schema.json
   - type: JSONSchema
     url: https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/json-schema/scalable-infrastructure-kubernetes-cluster-schema.json
-  - type: JSONLd
+  - type: JSONLD
     url: https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/json-ld/scalable-infrastructure-context.jsonld
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/main/vocabulary/scalable-infrastructure-vocabulary.yml
