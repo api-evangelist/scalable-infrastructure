@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon EC2 API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EC2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "EC2 query API action dispatcher (GET variant)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ec2.{region}.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "EC2 query API action dispatcher (GET variant)"
+        },
+        {
+          "info": {
+            "name": "EC2 query API action dispatcher",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ec2.{region}.amazonaws.com/",
+            "params": [
+              {
+                "name": "Action",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "Version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "All EC2 actions are issued as HTTPS GET or POST requests against the\nregional endpoint root, with the `Action` query parameter naming the\noperation. The `Action` parameter enum below lists a representative\nsample of supported operations.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
