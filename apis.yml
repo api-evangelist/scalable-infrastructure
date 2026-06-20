@@ -5,7 +5,7 @@ description: >-
   storage, networking, container orchestration, infrastructure as code (IaC),
   monitoring, and the major cloud providers (AWS, Azure, GCP, DigitalOcean) that
   power modern scalable systems.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/scalable-infrastructure/refs/heads/main/apis.yml
 created: '2024-01-15'
 modified: '2026-05-02'
@@ -27,7 +27,7 @@ apis:
       the cloud. The EC2 API manages instances, AMIs, security groups, VPCs, elastic
       IP addresses, placement groups, and auto-scaling groups. The most widely used
       compute API with a 31% global cloud market share.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanUrl: https://aws.amazon.com/ec2/
     baseUrl: https://ec2.amazonaws.com
     tags:
@@ -58,7 +58,7 @@ apis:
       logically isolated virtual network. The VPC API manages subnets, route tables,
       internet gateways, NAT gateways, VPC peering, PrivateLink, and network ACLs.
       Foundational networking for scalable AWS architectures.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanUrl: https://aws.amazon.com/vpc/
     baseUrl: https://ec2.amazonaws.com
     tags:
@@ -85,7 +85,7 @@ apis:
       The EKS API manages clusters, node groups, Fargate profiles, add-ons, identity
       providers, and access entries. Powers scalable containerized workloads on AWS
       with automatic Kubernetes control plane management.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanUrl: https://aws.amazon.com/eks/
     baseUrl: https://eks.amazonaws.com
     tags:
@@ -114,7 +114,7 @@ apis:
       The API manages instances, machine types, disks, snapshots, networks, firewall
       rules, and managed instance groups. Includes powerful autoscaler and load
       balancing integration. Google Cloud holds ~12% global cloud market share.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanUrl: https://cloud.google.com/compute
     baseUrl: https://compute.googleapis.com/compute/v1
     tags:
@@ -142,7 +142,7 @@ apis:
       Google Kubernetes Engine (GKE) is a managed, production-ready Kubernetes
       service with auto-upgrade, auto-repair, cluster autoscaling, Workload Identity,
       and Autopilot mode. The GKE API manages clusters, node pools, and operations.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanUrl: https://cloud.google.com/kubernetes-engine
     baseUrl: https://container.googleapis.com/v1
     tags:
@@ -169,7 +169,7 @@ apis:
       Azure. The REST API provides a consistent way to create, update, delete, and
       manage Azure resources across all services including VMs, storage, networking,
       and databases. Microsoft Azure holds ~28% global cloud market share.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanUrl: https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview
     baseUrl: https://management.azure.com
     tags:
@@ -195,7 +195,7 @@ apis:
       Azure Kubernetes Service (AKS) simplifies deploying, managing, and scaling
       containerized applications using Kubernetes. The AKS API manages clusters,
       agent pools, node pools, maintenance configurations, and trusted access bindings.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanUrl: https://learn.microsoft.com/en-us/azure/aks/
     baseUrl: https://management.azure.com
     tags:
@@ -222,7 +222,7 @@ apis:
       Kubernetes clusters, databases, object storage (Spaces), load balancers, VPCs,
       firewalls, and app platform deployments. Known for simplicity, transparent
       pricing, and developer experience for digital-native applications.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanUrl: https://www.digitalocean.com/
     baseUrl: https://api.digitalocean.com/v2
     tags:
