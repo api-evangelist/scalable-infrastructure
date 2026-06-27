@@ -46,7 +46,7 @@ apis:
         url: https://aws.amazon.com/ec2/pricing/
       - type: GettingStarted
         url: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html
-      - type: SDK
+      - type: SDKs
         url: https://aws.amazon.com/developer/tools/
     contact:
       - type: Support
@@ -131,7 +131,7 @@ apis:
         url: https://raw.githubusercontent.com/APIs-guru/openapi-directory/main/APIs/googleapis.com/compute/v1/openapi.yaml
       - type: Pricing
         url: https://cloud.google.com/compute/pricing
-      - type: SDK
+      - type: SDKs
         url: https://cloud.google.com/sdk/docs
     contact:
       - type: Support
@@ -184,7 +184,7 @@ apis:
         url: https://learn.microsoft.com/en-us/rest/api/resources/
       - type: OpenAPI
         url: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/specification/resources/resource-manager/Microsoft.Resources/stable/2023-07-01/resources.json
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/azure/developer/
     contact:
       - type: Support
@@ -241,7 +241,7 @@ apis:
         url: https://www.digitalocean.com/pricing
       - type: GettingStarted
         url: https://docs.digitalocean.com/products/getting-started/
-      - type: SDK
+      - type: SDKs
         url: https://github.com/digitalocean/doctl
     contact:
       - type: Support
@@ -305,7 +305,7 @@ apis:
     contact:
       - type: Community
         url: https://slack.pulumi.com/
-      - type: GitHub Issues
+      - type: GitHubIssues
         url: https://github.com/pulumi/pulumi/issues
 
 common:
