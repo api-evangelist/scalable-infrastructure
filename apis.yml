@@ -309,6 +309,8 @@ apis:
         url: https://github.com/pulumi/pulumi/issues
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/scalable-infrastructure-agentic-access.yml
   - type: Authentication
     url: authentication/scalable-infrastructure-authentication.yml
   - type: GitHubOrganization
