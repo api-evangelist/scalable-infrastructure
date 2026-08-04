@@ -1,0 +1,14 @@
+{
+  "provider": "scalable-infrastructure",
+  "sources": [
+    "scalable-infrastructure-ec2-api-openapi.yml"
+  ],
+  "outputs": [
+    "scalable-infrastructure-ec2-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
