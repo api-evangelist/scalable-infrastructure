@@ -44,6 +44,12 @@ apis:
   tags:
   - Infrastructure as Code
   - IaC
+  - Open-Source
+  - Provisioning
+  - Terraform
+  tags_raw:
+  - Infrastructure as Code
+  - IaC
   - Open Source
   - Provisioning
   - Terraform
@@ -68,6 +74,13 @@ apis:
   humanUrl: https://www.pulumi.com/
   baseUrl: https://api.pulumi.com/api
   tags:
+  - Cloud
+  - Infrastructure as Code
+  - IaC
+  - Open-Source
+  - Provisioning
+  - Pulumi
+  tags_raw:
   - Cloud
   - Infrastructure as Code
   - IaC
