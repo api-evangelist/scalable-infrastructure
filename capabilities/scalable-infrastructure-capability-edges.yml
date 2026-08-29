@@ -1,0 +1,24 @@
+slug: scalable-infrastructure
+provider: Scalable Infrastructure
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: EC2
+  spec_file: scalable-infrastructure-ec2-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: The Amazon EC2 API is a query API for managing EC2 compute, EBS volumes, and VPC resources
+  reason: Cloud compute, storage and network resource management maps to IT Infrastructure Management.
+    Operations are a generic action dispatcher, but the description is explicit about compute/EBS/VPC.

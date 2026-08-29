@@ -166,6 +166,9 @@ apis:
   - type: SDKs
     url: https://github.com/digitalocean/doctl
 common:
+  - type: CapabilityMap
+    url: capabilities/scalable-infrastructure-capability-edges.yml
+    name: Scalable Infrastructure Business Capability Map
   - type: AgenticAccess
     url: agentic-access/scalable-infrastructure-agentic-access.yml
   - type: Authentication
