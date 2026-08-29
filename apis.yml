@@ -5,6 +5,18 @@ description: >-
   storage, networking, container orchestration, infrastructure as code (IaC),
   monitoring, and the major cloud providers (AWS, Azure, GCP, DigitalOcean) that
   power modern scalable systems.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
