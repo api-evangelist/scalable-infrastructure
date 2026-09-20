@@ -166,6 +166,8 @@ apis:
   - type: SDKs
     url: https://github.com/digitalocean/doctl
 common:
+  - type: Plans
+    url: plans/scalable-infrastructure-plans-pricing.yml
   - type: CapabilityMap
     url: capabilities/scalable-infrastructure-capability-edges.yml
     name: Scalable Infrastructure Business Capability Map
