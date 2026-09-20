@@ -166,6 +166,8 @@ apis:
   - type: SDKs
     url: https://github.com/digitalocean/doctl
 common:
+  - type: RateLimits
+    url: rate-limits/scalable-infrastructure-rate-limits.yml
   - type: Plans
     url: plans/scalable-infrastructure-plans-pricing.yml
   - type: CapabilityMap

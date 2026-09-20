@@ -1,141 +1,79 @@
-specification: API Commons Rate Limits
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: Scalable Infrastructure
-providerId: scalable-infrastructure
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-tags:
-  - Cloud Infrastructure
-  - Compute
-  - DevOps
-  - Infrastructure as Code
-  - Kubernetes
-  - Networking
-  - Scalability
-  - Storage
-  - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Scalable Infrastructure API surface. Captures
-  per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values
-  to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+# Rate limits transcribed from the provider's own documentation — see provenance. Quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://developer.hashicorp.com/terraform/cloud-docs/api-docs
+sources:
+- https://developer.hashicorp.com/terraform/cloud-docs/api-docs
+provenance:
+  tool: planning/api-economics/harvest_ratelimits.py
+  run: 20260920T133210
+  grounding: every limit_text was found verbatim in the fetched page text
+published: true
+note: Page documents a general 30 req/s limit per user (IP for unauthenticated) plus lower per-endpoint
+  limits.
+limit_count: 10
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - AWS EC2 API
-      - AWS VPC API
-      - AWS EKS API
-      - Google Compute Engine API
-      - Google Kubernetes Engine API
-      - Azure Resource Manager API
-      - Azure AKS API
-      - DigitalOcean API
-      - Terraform Registry API
-      - Pulumi Cloud API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - AWS EC2 API
-      - AWS VPC API
-      - AWS EKS API
-      - Google Compute Engine API
-      - Google Kubernetes Engine API
-      - Azure Resource Manager API
-      - Azure AKS API
-      - DigitalOcean API
-      - Terraform Registry API
-      - Pulumi Cloud API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - AWS EC2 API
-      - AWS VPC API
-      - AWS EKS API
-      - Google Compute Engine API
-      - Google Kubernetes Engine API
-      - Azure Resource Manager API
-      - Azure AKS API
-      - DigitalOcean API
-      - Terraform Registry API
-      - Pulumi Cloud API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - AWS EC2 API
-      - AWS VPC API
-      - AWS EKS API
-      - Google Compute Engine API
-      - Google Kubernetes Engine API
-      - Azure Resource Manager API
-      - Azure AKS API
-      - DigitalOcean API
-      - Terraform Registry API
-      - Pulumi Cloud API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - AWS EC2 API
-      - AWS VPC API
-      - AWS EKS API
-      - Google Compute Engine API
-      - Google Kubernetes Engine API
-      - Azure Resource Manager API
-      - Azure AKS API
-      - DigitalOcean API
-      - Terraform Registry API
-      - Pulumi Cloud API
-policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
-maintainers:
-  - FN: API Evangelist
-    email: kin@apievangelist.com
-    url: https://apievangelist.com
+- name: General API rate limit
+  limit_text: You can make up to 30 requests per second to most API endpoints as an authenticated or unauthenticated
+    request.
+  limit: 30
+  window: second
+  scope: user
+  endpoint: most API endpoints
+- name: Send SMS message
+  limit_text: 5 requests per minute per user
+  limit: 5
+  window: minute
+  scope: user
+  endpoint: POST /session/two-factor-send-sms
+- name: Send SMS message hourly
+  limit_text: 10 requests per hour per user
+  limit: 10
+  window: hour
+  scope: user
+  endpoint: POST /api/v2/account/actions/two-factor-enable
+- name: Send SMS message daily
+  limit_text: 100 requests per day per IP address
+  limit: 100
+  window: day
+  scope: ip
+  endpoint: POST /api/v2/account/actions/two-factor-resend-verification-code
+- name: Submit 2FA code
+  limit_text: 5 requests per minute per user
+  limit: 5
+  window: minute
+  scope: user
+  endpoint: POST /session/two-factor
+- name: Send emails (account)
+  limit_text: 100 per minute
+  limit: 100
+  window: minute
+  scope: endpoint
+  endpoint: POST and PATCH /api/v2/account/create
+- name: Send emails (sso)
+  limit_text: 20 per minute
+  limit: 20
+  window: minute
+  scope: endpoint
+  endpoint: POST and GET /sso/link-new-account
+- name: Send emails (notification/oauth)
+  limit_text: 10 per minute
+  limit: 10
+  window: minute
+  scope: endpoint
+  endpoint: POST /api/v2/notification-configurations/{EXTERNAL_ID}/actions/verify
+- name: Send emails (reconfirm)
+  limit_text: 40 per hour
+  limit: 40
+  window: hour
+  scope: endpoint
+  endpoint: POST /account/reconfirm
+- name: Send emails (auth)
+  limit_text: 40 per hour per email address
+  limit: 40
+  window: hour
+  scope: user
+  endpoint: POST /auth
+headers:
+- x-ratelimit-limit
+exceeded_status: 429
