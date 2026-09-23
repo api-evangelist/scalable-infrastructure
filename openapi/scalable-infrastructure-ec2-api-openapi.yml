@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Amazon EC2 API
   description: 'The Amazon EC2 API is a query API for managing EC2 compute, EBS volumes,
@@ -9,9 +9,7 @@ info:
 
     representative subset of operations as an API Evangelist research artifact
 
-    for the scalable-infrastructure topic.
-
-    '
+    for the scalable-infrastructure topic.'
   version: 1.0.0
   contact:
     name: API Evangelist
@@ -37,9 +35,7 @@ paths:
 
         operation. The `Action` parameter enum below lists a representative
 
-        sample of supported operations.
-
-        '
+        sample of supported operations.'
       operationId: invokeAction
       tags:
       - EC2
