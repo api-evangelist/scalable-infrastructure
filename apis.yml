@@ -1,4 +1,5 @@
 name: Scalable Infrastructure
+kind: topic
 description: >-
   A subject-matter collection covering APIs, tools, and platforms for building
   and managing scalable cloud infrastructure. This topic encompasses compute,
@@ -7,15 +8,20 @@ description: >-
   power modern scalable systems.
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - hashicorp/terraform
+    - pulumi/pulumi
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -56,7 +62,7 @@ apis:
   tags:
   - Infrastructure as Code
   - IaC
-  - Open-Source
+  - Open Source
   - Provisioning
   - Terraform
   tags_raw:
@@ -65,6 +71,7 @@ apis:
   - Open Source
   - Provisioning
   - Terraform
+  - Open-Source
   properties:
   - type: Documentation
     url: https://developer.hashicorp.com/terraform/docs
@@ -89,7 +96,7 @@ apis:
   - Cloud
   - Infrastructure as Code
   - IaC
-  - Open-Source
+  - Open Source
   - Provisioning
   - Pulumi
   tags_raw:
@@ -99,6 +106,7 @@ apis:
   - Open Source
   - Provisioning
   - Pulumi
+  - Open-Source
   properties:
   - type: Documentation
     url: https://www.pulumi.com/docs/
